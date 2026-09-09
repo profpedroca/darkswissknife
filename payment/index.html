@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
+    <title>Pagamento</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="screen-payment" class="screen active">
+        <div class="header">
+            <span class="back-arrow">←</span>
+            <span class="header-title">PAGAR</span>
+        </div>
+        
+        <div class="content">
+            <h1>Pagar</h1>
+            
+            <div class="user-info">
+                <div class="avatar">
+                    <svg viewBox="0 0 24 24" fill="#a0a0a0" width="24" height="24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                </div>
+                <div class="details">
+                    <input type="text" id="input-username" value="@UNIVERSDOACAI1">
+                    <input type="text" id="input-store" value="UNIVERSIDADE DO ACAI">
+                </div>
+            </div>
+
+            <div class="value-section">
+                <label>DIGITE O VALOR</label>
+                <input type="text" id="input-value" value="R$ 0,80">
+            </div>
+
+            <div class="message-section">
+                <input type="text" placeholder="ESCREVA UMA MENSAGEM">
+            </div>
+        </div>
+
+        <div class="bottom-bar">
+            <div class="payment-method">
+                <span class="label">Forma de pagamento</span>
+                <span class="method">Saldo + Cartão 3269</span>
+            </div>
+            <button id="btn-pagar">Pagar</button>
+        </div>
+    </div>
+
+    <div id="overlay" class="overlay">
+        <div id="modal-validating" class="modal">
+            <div class="spinner"></div>
+            <span>Validando transação...</span>
+        </div>
+        <div id="modal-processing" class="modal hidden">
+            <div class="spinner"></div>
+            <span>Realizando pagamento...</span>
+        </div>
+    </div>
+
+    <div id="screen-black" class="screen black-screen"></div>
+
+    <div id="screen-success" class="screen success-screen">
+        <div class="success-circle">
+            <svg class="checkmark" viewBox="0 0 52 52">
+                <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+        </div>
+    </div>
+
+    <div id="screen-receipt" class="screen receipt-screen">
+        <div class="receipt-header">Comprovante</div>
+        <div class="receipt-body">
+            <div class="receipt-value" id="receipt-value">R$ 0,00</div>
+            <p>Para <strong id="receipt-store">Nome</strong></p>
+            <p id="receipt-username">@user</p>
+            
+            <hr>
+            
+            <div class="receipt-info">
+                <p><strong>Data e Hora:</strong> <span id="receipt-date"></span></p>
+                <p><strong>Código da transação:</strong> <span id="receipt-code"></span></p>
+            </div>
+        </div>
+        <button class="btn-fechar" onclick="location.reload()">Fechar</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
