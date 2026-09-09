@@ -1,64 +1,313 @@
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-body { background: #f8f9fa; color: #111; overflow: hidden; }
+/* --- RESET BÁSICO --- */
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+}
 
-.screen { display: none; width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; }
-.screen.active { display: block; }
+body { 
+    background: #f8f9fa; 
+    color: #111; 
+    /* Sem overflow: hidden para permitir rolagem quando o teclado abrir */
+}
 
-/* --- TELA 1 --- */
-.header { display: flex; align-items: center; padding: 20px; font-weight: 500; font-size: 14px; }
-.back-arrow { font-size: 24px; margin-right: 20px; font-weight: 300; }
-.header-title { letter-spacing: 1px; color: #333; }
+/* --- TELAS (SCREENS) --- */
+.screen { 
+    display: none; 
+    width: 100%; 
+    min-height: 100vh; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    padding-bottom: 100px; /* Espaço no final para a barra não cobrir nada */
+}
+.screen.active { 
+    display: block; 
+}
 
-.content { padding: 20px; margin-top: 10px; }
-.content h1 { font-size: 32px; font-weight: 700; margin-bottom: 30px; }
+/* --- TELA 1: PAGAMENTO --- */
+.header { 
+    display: flex; 
+    align-items: center; 
+    padding: 20px; 
+    font-weight: 500; 
+    font-size: 14px; 
+}
+.back-arrow { 
+    font-size: 24px; 
+    margin-right: 20px; 
+    font-weight: 300; 
+}
+.header-title { 
+    letter-spacing: 1px; 
+    color: #333; 
+}
 
-.user-info { display: flex; align-items: center; margin-bottom: 40px; }
-.avatar { width: 45px; height: 45px; background: #e0e6ed; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; }
-.details { display: flex; flex-direction: column; }
-.details input { border: none; background: transparent; outline: none; width: 250px; }
-#input-username { font-weight: 600; font-size: 16px; color: #111; margin-bottom: 2px; }
-#input-store { font-size: 14px; color: #666; text-transform: uppercase; }
+.content { 
+    padding: 20px; 
+    margin-top: 10px; 
+}
+.content h1 { 
+    font-size: 32px; 
+    font-weight: 700; 
+    margin-bottom: 30px; 
+}
 
-.value-section { margin-bottom: 50px; }
-.value-section label { font-size: 12px; font-weight: 600; color: #333; display: block; margin-bottom: 10px; letter-spacing: 0.5px; }
-#input-value { border: none; background: transparent; outline: none; font-size: 48px; font-weight: 700; color: #111; width: 100%; }
+.user-info { 
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 40px; 
+}
+.avatar { 
+    width: 45px; 
+    height: 45px; 
+    background: #e0e6ed; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-right: 15px; 
+}
+.details { 
+    display: flex; 
+    flex-direction: column; 
+}
+.details input { 
+    border: none; 
+    background: transparent; 
+    outline: none; 
+    width: 250px; 
+}
+#input-username { 
+    font-weight: 600; 
+    font-size: 16px; 
+    color: #111; 
+    margin-bottom: 2px; 
+}
+#input-store { 
+    font-size: 14px; 
+    color: #666; 
+    text-transform: uppercase; 
+}
 
-.message-section input { width: 100%; border: none; border-bottom: 1px solid #111; padding: 10px 0; outline: none; font-size: 14px; background: transparent; text-transform: uppercase; }
-.message-section input::placeholder { color: #333; }
+.value-section { 
+    margin-bottom: 50px; 
+}
+.value-section label { 
+    font-size: 12px; 
+    font-weight: 600; 
+    color: #333; 
+    display: block; 
+    margin-bottom: 10px; 
+    letter-spacing: 0.5px; 
+}
+#input-value { 
+    border: none; 
+    background: transparent; 
+    outline: none; 
+    font-size: 48px; 
+    font-weight: 700; 
+    color: #111; 
+    width: 100%; 
+}
 
-.bottom-bar { position: absolute; bottom: 0; width: 100%; background: #6200ee; color: white; display: flex; justify-content: space-between; align-items: center; padding: 20px; border-top-left-radius: 10px; border-top-right-radius: 10px; }
-.payment-method { display: flex; flex-direction: column; }
-.payment-method .label { font-size: 12px; color: #ccc; margin-bottom: 4px; }
-.payment-method .method { font-size: 15px; font-weight: 600; }
-#btn-pagar { background: transparent; border: none; color: white; font-size: 18px; font-weight: 600; cursor: pointer; }
+.message-section input { 
+    width: 100%; 
+    border: none; 
+    border-bottom: 1px solid #111; 
+    padding: 10px 0; 
+    outline: none; 
+    font-size: 14px; 
+    background: transparent; 
+    text-transform: uppercase; 
+}
+.message-section input::placeholder { 
+    color: #333; 
+}
 
-/* --- MODAIS DE ANIMAÇÃO --- */
-.overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 10; align-items: center; justify-content: center; }
-.modal { background: #fff; padding: 25px 30px; border-radius: 8px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); width: 85%; max-width: 350px; }
-.modal span { color: #666; font-size: 15px; font-weight: 500; }
-.hidden { display: none !important; }
+/* Barra Inferior (Agora Fixa) */
+.bottom-bar { 
+    position: fixed; /* Garante que ficará sempre colada na parte inferior da tela */
+    bottom: 0; 
+    left: 0;
+    width: 100%; 
+    background: #6200ee; 
+    color: white; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 20px; 
+    border-top-left-radius: 10px; 
+    border-top-right-radius: 10px; 
+    z-index: 5;
+}
+.payment-method { 
+    display: flex; 
+    flex-direction: column; 
+}
+.payment-method .label { 
+    font-size: 12px; 
+    color: #ccc; 
+    margin-bottom: 4px; 
+}
+.payment-method .method { 
+    font-size: 15px; 
+    font-weight: 600; 
+}
+#btn-pagar { 
+    background: transparent; 
+    border: none; 
+    color: white; 
+    font-size: 18px; 
+    font-weight: 600; 
+    cursor: pointer; 
+}
 
-.spinner { width: 24px; height: 24px; border: 3px solid #e0e0e0; border-top: 3px solid #6200ee; border-radius: 50%; animation: spin 1s linear infinite; }
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+/* --- MODAIS E SOBREPOSIÇÕES (ANIMAÇÃO) --- */
+.overlay { 
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0,0,0,0.6); 
+    z-index: 10; 
+    align-items: center; 
+    justify-content: center; 
+}
+.modal { 
+    background: #fff; 
+    padding: 25px 30px; 
+    border-radius: 8px; 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
+    width: 85%; 
+    max-width: 350px; 
+}
+.modal span { 
+    color: #666; 
+    font-size: 15px; 
+    font-weight: 500; 
+}
+.hidden { 
+    display: none !important; 
+}
 
-/* --- TELA PRETA --- */
-.black-screen { background: #000; z-index: 20; }
+.spinner { 
+    width: 24px; 
+    height: 24px; 
+    border: 3px solid #e0e0e0; 
+    border-top: 3px solid #6200ee; 
+    border-radius: 50%; 
+    animation: spin 1s linear infinite; 
+}
+@keyframes spin { 
+    0% { transform: rotate(0deg); } 
+    100% { transform: rotate(360deg); } 
+}
+
+/* --- TELA PRETA RÁPIDA --- */
+.black-screen { 
+    background: #000; 
+    z-index: 20; 
+    position: fixed; /* Fixa para cobrir tudo independente de scroll */
+}
 
 /* --- TELA DE SUCESSO (CHECKMARK) --- */
-.success-screen { background: #fff; z-index: 30; display: none; align-items: center; justify-content: center; }
-.success-circle { width: 80px; height: 80px; background: #6200ee; border-radius: 50%; display: flex; align-items: center; justify-content: center; transform: scale(0); animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-.checkmark { width: 40px; height: 40px; }
-.checkmark-check { transform-origin: 50% 50%; stroke-dasharray: 48; stroke-dashoffset: 48; stroke: #fff; stroke-width: 4; animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.4s forwards; }
+.success-screen { 
+    background: #fff; 
+    z-index: 30; 
+    display: none; 
+    align-items: center; 
+    justify-content: center; 
+    position: fixed; /* Fixa para centralizar na viewport */
+    width: 100vw;
+    height: 100vh;
+}
+.success-circle { 
+    width: 80px; 
+    height: 80px; 
+    background: #6200ee; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    transform: scale(0); 
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
+}
+.checkmark { 
+    width: 40px; 
+    height: 40px; 
+}
+.checkmark-check { 
+    transform-origin: 50% 50%; 
+    stroke-dasharray: 48; 
+    stroke-dashoffset: 48; 
+    stroke: #fff; 
+    stroke-width: 4; 
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.4s forwards; 
+}
 
 @keyframes popIn { 100% { transform: scale(1); } }
 @keyframes stroke { 100% { stroke-dashoffset: 0; } }
 
 /* --- TELA DE COMPROVANTE --- */
-.receipt-screen { background: #fff; z-index: 40; display: none; flex-direction: column; }
-.receipt-header { background: #6200ee; color: white; padding: 20px; text-align: center; font-weight: bold; font-size: 18px; }
-.receipt-body { padding: 30px 20px; text-align: center; }
-.receipt-value { font-size: 40px; font-weight: bold; margin-bottom: 10px; }
-.receipt-body p { color: #555; margin-bottom: 5px; }
-.receipt-body hr { border: none; border-top: 1px dashed #ccc; margin: 30px 0; }
-.receipt-info { text-align: left; font-size: 14px; line-height: 1.8; }
-.btn-fechar { position: absolute; bottom: 30px; left: 20px; right: 20px; padding: 15px; background: #eee; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; }
+.receipt-screen { 
+    background: #fff; 
+    z-index: 40; 
+    display: none; 
+    flex-direction: column; 
+    min-height: 100vh; /* Usa min-height para poder rolar caso seja maior que a tela */
+    position: absolute; 
+    padding-bottom: 90px;
+}
+.receipt-header { 
+    background: #6200ee; 
+    color: white; 
+    padding: 20px; 
+    text-align: center; 
+    font-weight: bold; 
+    font-size: 18px; 
+}
+.receipt-body { 
+    padding: 30px 20px; 
+    text-align: center; 
+}
+.receipt-value { 
+    font-size: 40px; 
+    font-weight: bold; 
+    margin-bottom: 10px; 
+}
+.receipt-body p { 
+    color: #555; 
+    margin-bottom: 5px; 
+}
+.receipt-body hr { 
+    border: none; 
+    border-top: 1px dashed #ccc; 
+    margin: 30px 0; 
+}
+.receipt-info { 
+    text-align: left; 
+    font-size: 14px; 
+    line-height: 1.8; 
+}
+.btn-fechar { 
+    position: fixed; 
+    bottom: 30px; 
+    left: 20px; 
+    right: 20px; 
+    padding: 15px; 
+    background: #eee; 
+    border: none; 
+    border-radius: 8px; 
+    font-weight: bold; 
+    font-size: 16px; 
+    cursor: pointer; 
+}
