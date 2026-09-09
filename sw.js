@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dsk-cache-v1';
+const CACHE_NAME = 'dsk-cache-v2';
 const urlsToCache = [
   './',
   './index.html',
@@ -9,7 +9,12 @@ const urlsToCache = [
 
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
+    caches.open(CACHE_NAME).then(cache => {
+      // Faz o cache de cada arquivo individualmente para não travar se 1 falhar
+      return Promise.allSettled(
+        urlsToCache.map(url => cache.add(url).catch(err => console.warn('Erro no cache:', url, err)))
+      );
+    })
   );
 });
 
