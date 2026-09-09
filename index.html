@@ -2,29 +2,100 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
     <title>Dark Swiss Knife</title>
+    <!-- Adicionando o Manifesto para o PWA funcionar desde a tela inicial -->
     <link rel="manifest" href="manifest.json">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px; }
-        h1 { margin-top: 50px; font-size: 28px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; }
-        .menu { margin-top: 50px; width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 15px; }
-        .btn { background-color: #1a1a1a; color: #fff; padding: 20px; border-radius: 12px; text-decoration: none; text-align: center; font-size: 18px; border: 1px solid #333; transition: 0.2s; }
-        .btn:active { background-color: #333; }
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        /* Container e estilo da Logo */
+        .logo-container {
+            text-align: center;
+            padding-top: 60px;
+            padding-bottom: 20px;
+        }
+        .logo-container img {
+            width: 85px;
+            height: 85px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+        
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
+            color: #f0f0f0;
+        }
+        
+        /* Menu de opções */
+        .menu {
+            width: 100%;
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 0 25px;
+            box-sizing: border-box;
+        }
+        
+        /* Botão do menu */
+        .menu-item {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            font-weight: 500;
+            border: 1px solid #333;
+            transition: background 0.2s;
+        }
+        
+        .menu-item:active {
+            background-color: #333;
+        }
+
+        .icon {
+            font-size: 24px;
+            margin-right: 15px;
+        }
     </style>
 </head>
 <body>
-    <h1>Dark Swiss Knife</h1>
-    
-    <div class="menu">
-        <a href="payment/index.html" class="btn">Simulador de Pagamento</a>
-        </div>
 
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').then(() => console.log("Service Worker Registrado!"));
-        }
-    </script>
+    <div class="logo-container">
+        <!-- Puxando o ícone da raiz do projeto -->
+        <img src="icone-192.png" alt="Dark Swiss Knife Logo">
+    </div>
+    
+    <h1>Dark Swiss Knife</h1>
+
+    <div class="menu">
+        <!-- Link para abrir a ferramenta de pagamento -->
+        <a href="payment/index.html" class="menu-item">
+            <span class="icon">💸</span> ComproPay
+        </a>
+        
+        <!-- Espaço para você adicionar outras ferramentas no futuro -->
+        <a href="#" class="menu-item" style="opacity: 0.5;">
+            <span class="icon">🔒</span> Em breve...
+        </a>
+    </div>
+
 </body>
 </html>
