@@ -1,8 +1,7 @@
-/* --- VARIÁVEIS DE COR E RESET --- */
 :root {
-    --primary-purple: #680ba3;    /* A cor exata de todos os elementos roxos (botões, barra, textos) */
+    --primary-purple: #680ba3; 
     --receipt-bg: #fff;
-    --card-bg: #f5f5f7;          /* Cinza claro dos cartões */
+    --card-bg: #f5f5f7;
     --text-main: #111;
     --text-sub: #555;
     --text-label: #888;
@@ -13,7 +12,6 @@
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 body { background: #f8f9fa; color: #111; overscroll-behavior: none; }
 
-/* --- ESTRUTURA DE TELAS --- */
 .screen { display: none; width: 100%; min-height: 100vh; position: absolute; top: 0; left: 0; overflow-y: auto; overflow-x: hidden; }
 .screen.active { display: block; }
 
@@ -21,15 +19,15 @@ body { background: #f8f9fa; color: #111; overscroll-behavior: none; }
 .header { display: flex; align-items: center; padding: 20px; font-weight: 500; font-size: 14px; }
 .back-arrow { font-size: 24px; margin-right: 20px; font-weight: 300; }
 .header-title { letter-spacing: 1px; color: #333; }
-.content { padding: 20px; margin-top: 10px; padding-bottom: 120px; }
-.content h1 { font-size: 32px; font-weight: 700; margin-bottom: 30px; }
-.user-info { display: flex; align-items: center; margin-bottom: 40px; }
+.content { padding: 20px; margin-top: 5px; padding-bottom: 120px; }
+.content h1 { font-size: 32px; font-weight: 700; margin-bottom: 25px; }
+.user-info { display: flex; align-items: center; margin-bottom: 35px; }
 .avatar { width: 45px; height: 45px; background: #e0e6ed; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; }
 .details { display: flex; flex-direction: column; }
 .details input { border: none; background: transparent; outline: none; width: 250px; }
 #input-username { font-weight: 600; font-size: 16px; color: #111; margin-bottom: 2px; }
 #input-store { font-size: 14px; color: #666; text-transform: uppercase; }
-.value-section { margin-bottom: 50px; }
+.value-section { margin-bottom: 40px; }
 .value-section label { font-size: 12px; font-weight: 600; color: #333; display: block; margin-bottom: 10px; letter-spacing: 0.5px; }
 .value-input-wrapper { display: flex; align-items: baseline; }
 .currency { font-size: 24px; font-weight: 700; color: #111; margin-right: 8px; }
@@ -46,39 +44,114 @@ body { background: #f8f9fa; color: #111; overscroll-behavior: none; }
 .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 20; align-items: center; justify-content: center; }
 .transition-gif { width: 100%; height: auto; max-width: 400px; }
 
-/* --- TELA 2: COMPROVANTE EXATAMENTE IGUAL --- */
+/* --- TELA 2: COMPROVANTE RESUMIDO --- */
 .receipt-screen { background: #fff; display: none; flex-direction: column; position: relative; }
-
-/* Botão Fechar flutuante */
 .btn-close-receipt { position: absolute; top: 20px; right: 20px; background: rgba(104, 11, 163, 0.1); border: none; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; }
 
-/* Estrutura do Recibo */
-.receipt-content { padding: 60px 20px 150px 20px; text-align: center; display: flex; flex-direction: column; align-items: center; }
-.shop-icon-large { width: 100px; height: 100px; margin-bottom: 20px; border-radius: 50%; }
-.receipt-status-title { font-size: 26px; font-weight: 600; color: #111; margin-bottom: 30px; }
+/* REDUÇÃO DE ESPAÇOS AQUI PARA NÃO ROLAR */
+.receipt-content { padding: 40px 15px 140px 15px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.shop-icon-large { width: 80px; height: 80px; margin-bottom: 15px; border-radius: 50%; }
+.receipt-status-title { font-size: 24px; font-weight: 600; color: #111; margin-bottom: 20px; }
 
-/* Cartões Cinzentos */
-.receipt-card { background: var(--card-bg); width: 100%; border-radius: 8px; display: flex; align-items: flex-start; padding: 20px; margin-bottom: 2px; text-align: left; }
-.card-icon { width: 40px; height: 40px; margin-right: 15px; display: flex; align-items: center; justify-content: center; padding-top: 3px; }
+/* Cartões mais estreitos */
+.receipt-card { background: var(--card-bg); width: 100%; border-radius: 8px; display: flex; align-items: flex-start; padding: 15px; margin-bottom: 2px; text-align: left; }
+.card-icon { width: 35px; height: 35px; margin-right: 12px; display: flex; align-items: center; justify-content: center; padding-top: 3px; }
 .card-details { flex: 1; display: flex; flex-direction: column; }
-.info-label { font-size: 11px; font-weight: 500; color: var(--text-label); text-transform: uppercase; margin-bottom: 5px; }
+.info-label { font-size: 11px; font-weight: 500; color: var(--text-label); text-transform: uppercase; margin-bottom: 3px; }
 
-/* Textos dentro dos cartões */
-.value-card { padding: 30px 20px; margin-bottom: 3px; }
-.receipt-value-text { display: flex; align-items: center; margin-bottom: 3px; }
-.currency-small { font-size: 16px; font-weight: 500; color: #777; margin-right: 8px; margin-top: -12px; }
-.value-large { font-size: 36px; font-weight: 700; color: var(--primary-purple); }
-.app-tag { font-size: 13px; color: var(--text-confirmed); }
-.user-main { font-size: 16px; font-weight: 600; color: #111; margin-bottom: 2px; }
-.user-sub { font-size: 14px; color: var(--text-confirmed); }
-.orig-dest-space { margin-top: 20px; }
+.value-card { padding: 20px 15px; }
+.receipt-value-text { display: flex; align-items: center; margin-bottom: 0px; }
+.currency-small { font-size: 16px; font-weight: 500; color: #777; margin-right: 8px; margin-top: -8px; }
+.value-large { font-size: 32px; font-weight: 700; color: var(--primary-purple); }
+.app-tag { font-size: 12px; color: var(--text-confirmed); }
+.user-main { font-size: 15px; font-weight: 600; color: #111; margin-bottom: 2px; }
+.user-sub { font-size: 13px; color: var(--text-confirmed); }
+.orig-dest-space { margin-top: 15px; }
 .receipt-divider { border: none; border-top: 1px solid var(--divider-color); width: 100%; margin: 1px 0; }
-.transaction-value { font-size: 15px; color: #111; margin-bottom: 15px; }
-.transaction-space { margin-top: 20px; }
+.transaction-value { font-size: 14px; color: #111; margin-bottom: 10px; }
+.transaction-space { margin-top: 15px; }
 .status-confirmed { color: var(--text-confirmed); }
 
-/* Botões Inferiores Fixos */
-.receipt-actions { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; padding: 20px; display: flex; flex-direction: column; gap: 10px; border-top: 1px solid #eee; z-index: 10; }
+.receipt-actions { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; padding: 15px 20px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid #eee; z-index: 10; }
 .btn-action { width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; outline: none; }
 .btn-share { background: var(--primary-purple); color: white; border: none; }
 .btn-view-full { background: transparent; color: var(--primary-purple); border: 2px solid var(--primary-purple); }
+
+
+/* --- TELA 3: COMPROPAY (DETALHADO) --- */
+.compropay-screen { 
+    background: linear-gradient(to bottom, #ffffff, #e6e6e6); 
+    display: none; 
+    flex-direction: column; 
+    min-height: 100vh;
+}
+.compropay-header { 
+    padding: 20px; 
+}
+.back-arrow-compropay { 
+    font-size: 26px; 
+    color: #111; 
+    cursor: pointer; 
+    font-weight: 300;
+}
+
+.compropay-content { 
+    padding: 0 25px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+}
+.compropay-logo { 
+    width: 140px; 
+    margin-bottom: 15px; 
+}
+.compropay-content h2 { 
+    font-size: 22px; 
+    font-weight: 700; 
+    color: #111; 
+    margin-bottom: 5px; 
+}
+.compropay-content h3 { 
+    font-size: 16px; 
+    font-weight: 400; 
+    color: #555; 
+    margin-bottom: 30px; 
+}
+
+.compropay-details { 
+    width: 100%; 
+}
+.compropay-details hr { 
+    border: none; 
+    border-top: 1px solid #d1d1d1; 
+    margin: 15px 0; 
+}
+.detail-row { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    margin-bottom: 15px; 
+}
+.detail-label { 
+    font-size: 12px; 
+    font-weight: 600; 
+    color: #999; 
+    text-transform: uppercase; 
+    width: 30%; 
+}
+.detail-value { 
+    font-size: 14px; 
+    font-weight: 500; 
+    color: #111; 
+    text-align: right; 
+    width: 70%; 
+    word-wrap: break-word; 
+}
+
+.compropay-actions { 
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    padding: 20px; 
+}
