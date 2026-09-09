@@ -1,47 +1,54 @@
 document.getElementById('btn-pagar').addEventListener('click', () => {
-    // 1. Captura os dados digitados na Tela 1
+    // Captura os dados digitados
     const username = document.getElementById('input-username').value;
     const value = document.getElementById('input-value').value;
-    
-    // Define um nome de origem fixo como na referência
     const originName = "Pedro Henrique Sales Cavalcante";
 
-    // 2. Elementos de Tela e Transição
+    // Elementos de Tela
     const screenPayment = document.getElementById('screen-payment');
     const overlayTransition = document.getElementById('overlay-transition');
     const screenReceipt = document.getElementById('screen-receipt');
     
-    // Oculta a tela de pagamento
+    // Oculta tela de pagamento e exibe transição
     screenPayment.classList.remove('active');
-    
-    // 3. Exibe o Overlay de Transição (com o GIF)
     overlayTransition.style.display = 'flex';
 
-    // 4. Temporizador da Transição (Sincronizado com a duração do GIF)
-    // Usaremos 2500ms (2,5 segundos), que é uma duração comum para GIFs de transição
+    // Temporizador da Transição
     setTimeout(() => {
-        // Oculta a transição
         overlayTransition.style.display = 'none';
-        
-        // 5. Exibe a Nova Tela de Comprovante Final
         screenReceipt.style.display = 'flex';
         
-        // --- PREENCHIMENTO DE DADOS DINÂMICOS ---
-        
-        // Valor
+        // --- DADOS TELA 2 (RESUMO) ---
         document.getElementById('receipt-value').innerText = value;
-        // Destino (@user)
         document.getElementById('receipt-username').innerText = username;
-        // Origem (Nome fixo)
         document.getElementById('receipt-origem').innerText = originName;
         
-        // Data e Hora atuais
         const now = new Date();
-        document.getElementById('receipt-date').innerText = now.toLocaleString('pt-BR');
+        const formattedDate = now.toLocaleString('pt-BR');
+        document.getElementById('receipt-date').innerText = formattedDate;
         
-        // Código de Transação aleatório (6 dígitos)
         const randomCode = Math.floor(100000 + Math.random() * 900000);
         document.getElementById('receipt-code').innerText = randomCode;
 
-    }, 2500); // <-- TEMPO DE EXIBIÇÃO DO GIF (2,5 segundos)
+        // --- DADOS TELA 3 (COMPROPAY) ---
+        // Preenchemos os dados da terceira tela ao mesmo tempo para já ficarem prontos
+        document.getElementById('cp-value').innerText = "R$ " + value;
+        document.getElementById('cp-origem').innerText = originName;
+        document.getElementById('cp-username').innerText = username;
+        document.getElementById('cp-code').innerText = randomCode;
+        document.getElementById('cp-date').innerText = formattedDate;
+
+    }, 2500); 
+});
+
+// Navegação para a Tela do ComproPay
+document.getElementById('btn-ver-comprovante').addEventListener('click', () => {
+    document.getElementById('screen-receipt').style.display = 'none';
+    document.getElementById('screen-compropay').style.display = 'flex';
+});
+
+// Botão Voltar do ComproPay (volta para o resumo)
+document.getElementById('btn-back-compropay').addEventListener('click', () => {
+    document.getElementById('screen-compropay').style.display = 'none';
+    document.getElementById('screen-receipt').style.display = 'flex';
 });
