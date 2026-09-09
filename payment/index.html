@@ -1,130 +1,31 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
-    <title>Pagamento</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- TELA 1: DADOS DO PAGAMENTO -->
-    <div id="screen-payment" class="screen active">
-        <div class="header">
-            <span class="back-arrow">←</span>
-            <span class="header-title">PAGAR</span>
-        </div>
+<div id="screen-receipt" class="screen receipt-screen">
         
-        <div class="content">
-            <h1>Pagar</h1>
-            
-            <div class="user-info">
-                <div class="avatar">
-                    <!-- Ícone de usuário padrão -->
-                    <svg viewBox="0 0 24 24" fill="#a0a0a0" width="24" height="24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
-                </div>
-                <div class="details">
-                    <input type="text" id="input-username" value="@UNIVERSDOACAI1">
-                    <input type="text" id="input-store" value="UNIVERSIDADE DO ACAI">
-                </div>
-            </div>
-
-            <div class="value-section">
-                <label>DIGITE O VALOR</label>
-                <div class="value-input-wrapper">
-                    <span class="currency">R$</span>
-                    <input type="text" id="input-value" value="0,80">
-                </div>
-            </div>
-
-            <div class="message-section">
-                <input type="text" placeholder="ESCREVA UMA MENSAGEM">
-            </div>
-        </div>
-
-        <div class="bottom-bar">
-            <div class="payment-method">
-                <span class="label">Forma de pagamento</span>
-                <span class="method">Saldo + Cartão 3269</span>
-            </div>
-            <button id="btn-pagar">Pagar</button>
-        </div>
-    </div>
-
-    <!-- SOBREPOSIÇÃO: NOVA TRANSIÇÃO COM GIF -->
-    <div id="overlay-transition" class="overlay">
-        <img src="Transition.gif" alt="Processando..." class="transition-gif">
-    </div>
-
-    <!-- TELA 2: COMPROVANTE EXATAMENTE IGUAL -->
-    <div id="screen-receipt" class="screen receipt-screen">
-        <!-- Cabeçalho Roxo da Barra Inferior fornecida pelo usuário -->
-        <div class="receipt-header-bar">
-            <span class="receipt-title">Comprovante</span>
-            <button class="btn-close-receipt" onclick="location.reload()">
-                <svg viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-            </button>
-        </div>
+        <button class="btn-close-receipt" onclick="location.reload()">
+            <svg viewBox="0 0 24 24" fill="#680ba3" width="20" height="20">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
+            </svg>
+        </button>
 
         <div class="receipt-content">
-            <!-- Ícone da Loja -->
             <img src="shop-icon.png" alt="Loja" class="shop-icon-large">
             
             <h2 class="receipt-status-title">Pagamento realizado</h2>
 
-            <!-- Cartão 1: Valor -->
-            <div class="receipt-card value-card">
-                <div class="card-icon">
-                    <!-- Ícone de Moeda -->
-                    <svg viewBox="0 0 24 24" fill="#a0a0a0" width="24" height="24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2.5-4.5v-1.1c-1.31-.22-2.13-1.01-2.22-2.22l1.64-.17c.07.72.58 1.13 1.3 1.13.78 0 1.25-.44 1.25-1.07 0-.58-.45-.88-1.52-1.35C8.07 9.87 6.91 9.24 6.91 7.69c0-1.12.82-1.95 2.09-2.18V4.5h1.5v1.07c1.17.21 1.83.84 1.95 1.9l-1.6.2c-.08-.55-.47-.88-1.15-.88-.73 0-1.11.39-1.11.96 0 .54.4.78 1.29 1.2.6.27 1.01.44 1.34.58.26.11.51.22.76.33.64.29 1.12.51 1.54.84.97.77 1.52 1.63 1.52 2.76 0 1.22-.9 2.07-2.18 2.3v1.16h-1.5z"/></svg>
-                </div>
-                <div class="card-details">
-                    <p class="receipt-value-text"><span class="currency-small">R$</span> <span id="receipt-value" class="value-large">0,80</span></p>
-                    <p class="app-tag">Valor pago via App</p>
-                </div>
-            </div>
+            ```
 
-            <!-- Cartão 2: Destino e Origem -->
-            <div class="receipt-card user-card">
-                <div class="card-icon">
-                    <!-- Ícone de Seta -->
-                    <svg viewBox="0 0 24 24" fill="#a0a0a0" width="24" height="24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-                </div>
-                <div class="card-details">
-                    <p class="info-label">DESTINO</p>
-                    <p id="receipt-username" class="user-main">@UNIVERSDOACAI1</p>
-                    <p class="info-label orig-dest-space">ORIGEM</p>
-                    <p id="receipt-origem" class="user-sub">Pedro Henrique Sales Cavalcante</p>
-                </div>
-            </div>
+### 2. Atualização no CSS (`payment/style.css`)
 
-            <hr class="receipt-divider">
+Vá no seu arquivo CSS e faça as duas alterações abaixo:
 
-            <!-- Cartão 3: Informações da Transação -->
-            <div class="receipt-card transaction-card">
-                <div class="card-icon">
-                    <!-- Ícone de Documento -->
-                    <svg viewBox="0 0 24 24" fill="#a0a0a0" width="24" height="24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-                </div>
-                <div class="card-details">
-                    <p class="info-label">DATA</p>
-                    <p id="receipt-date" class="transaction-value">02/09/2026 08:05:57</p>
-                    
-                    <p class="info-label transaction-space">TRANSAÇÃO</p>
-                    <p id="receipt-code" class="transaction-value">962720</p>
-                    
-                    <p class="info-label transaction-space">STATUS</p>
-                    <p class="transaction-value status-confirmed">Confirmado</p>
-                </div>
-            </div>
+**Primeiro:** Mude a cor da variável `--primary-purple` lá no topo do arquivo (na tag `:root`) para o seu código exato. É isso que vai corrigir os botões embaixo e deixá-los do jeito certo.
 
-            <!-- Botões de Ação -->
-            <div class="receipt-actions">
-                <button class="btn-action btn-share">Compartilhar</button>
-                <button class="btn-action btn-view-full">Ver comprovante</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+```css
+:root {
+    --primary-purple: #680ba3;    /* CORRIGIDO: Roxo exato para TODOS os botões, valores e textos */
+    --card-bg: #f5f5f7;          /* Cinza bem clarinho igual ao print */
+    --text-main: #111;
+    --text-sub: #555;
+    --text-label: #888;
+    --text-confirmed: #444;
+    --divider-color: #e5e5e5;
+}
