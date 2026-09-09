@@ -44,114 +44,54 @@ body { background: #f8f9fa; color: #111; overscroll-behavior: none; }
 .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 20; align-items: center; justify-content: center; }
 .transition-gif { width: 100%; height: auto; max-width: 400px; }
 
-/* --- TELA 2: COMPROVANTE RESUMIDO --- */
+/* --- TELA 2: COMPROVANTE RESUMIDO (COMPACTADO) --- */
 .receipt-screen { background: #fff; display: none; flex-direction: column; position: relative; }
-.btn-close-receipt { position: absolute; top: 20px; right: 20px; background: rgba(104, 11, 163, 0.1); border: none; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; }
+.btn-close-receipt { position: absolute; top: 15px; right: 15px; background: rgba(104, 11, 163, 0.1); border: none; border-radius: 50%; width: 34px; height: 34px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; }
 
-/* REDUÇÃO DE ESPAÇOS AQUI PARA NÃO ROLAR */
-.receipt-content { padding: 40px 15px 140px 15px; text-align: center; display: flex; flex-direction: column; align-items: center; }
-.shop-icon-large { width: 80px; height: 80px; margin-bottom: 15px; border-radius: 50%; }
-.receipt-status-title { font-size: 24px; font-weight: 600; color: #111; margin-bottom: 20px; }
+.receipt-content { padding: 25px 15px 130px 15px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.shop-icon-large { width: 65px; height: 65px; margin-bottom: 10px; border-radius: 50%; }
+.receipt-status-title { font-size: 20px; font-weight: 600; color: #111; margin-bottom: 15px; }
 
-/* Cartões mais estreitos */
-.receipt-card { background: var(--card-bg); width: 100%; border-radius: 8px; display: flex; align-items: flex-start; padding: 15px; margin-bottom: 2px; text-align: left; }
-.card-icon { width: 35px; height: 35px; margin-right: 12px; display: flex; align-items: center; justify-content: center; padding-top: 3px; }
+/* Cartões espremidos para não rolar a tela */
+.receipt-card { background: var(--card-bg); width: 100%; border-radius: 8px; display: flex; align-items: flex-start; padding: 12px 15px; margin-bottom: 2px; text-align: left; }
+.card-icon { width: 30px; height: 30px; margin-right: 12px; display: flex; align-items: center; justify-content: center; padding-top: 3px; }
 .card-details { flex: 1; display: flex; flex-direction: column; }
-.info-label { font-size: 11px; font-weight: 500; color: var(--text-label); text-transform: uppercase; margin-bottom: 3px; }
+.info-label { font-size: 10px; font-weight: 600; color: var(--text-label); text-transform: uppercase; margin-bottom: 2px; }
 
-.value-card { padding: 20px 15px; }
-.receipt-value-text { display: flex; align-items: center; margin-bottom: 0px; }
-.currency-small { font-size: 16px; font-weight: 500; color: #777; margin-right: 8px; margin-top: -8px; }
-.value-large { font-size: 32px; font-weight: 700; color: var(--primary-purple); }
-.app-tag { font-size: 12px; color: var(--text-confirmed); }
-.user-main { font-size: 15px; font-weight: 600; color: #111; margin-bottom: 2px; }
-.user-sub { font-size: 13px; color: var(--text-confirmed); }
-.orig-dest-space { margin-top: 15px; }
+.value-card { padding: 15px; }
+.receipt-value-container { display: flex; align-items: baseline; gap: 4px; white-space: nowrap; margin-bottom: 2px; }
+.currency-small { font-size: 15px; font-weight: 500; color: #777; }
+.value-large { font-size: 28px; font-weight: 700; color: var(--primary-purple); }
+.app-tag { font-size: 11px; color: var(--text-confirmed); }
+
+.user-main { font-size: 14px; font-weight: 600; color: #111; margin-bottom: 2px; }
+.user-sub { font-size: 12px; color: var(--text-confirmed); }
+.orig-dest-space { margin-top: 10px; }
 .receipt-divider { border: none; border-top: 1px solid var(--divider-color); width: 100%; margin: 1px 0; }
-.transaction-value { font-size: 14px; color: #111; margin-bottom: 10px; }
-.transaction-space { margin-top: 15px; }
-.status-confirmed { color: var(--text-confirmed); }
+.transaction-value { font-size: 13px; color: #111; margin-bottom: 8px; }
+.transaction-space { margin-top: 10px; }
+.status-confirmed { color: var(--text-confirmed); margin-bottom: 0; }
 
-.receipt-actions { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; padding: 15px 20px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid #eee; z-index: 10; }
-.btn-action { width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; outline: none; }
+.receipt-actions { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; padding: 10px 15px 15px 15px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid #eee; z-index: 10; }
+.btn-action { width: 100%; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 15px; cursor: pointer; outline: none; }
 .btn-share { background: var(--primary-purple); color: white; border: none; }
 .btn-view-full { background: transparent; color: var(--primary-purple); border: 2px solid var(--primary-purple); }
 
 
-/* --- TELA 3: COMPROPAY (DETALHADO) --- */
-.compropay-screen { 
-    background: linear-gradient(to bottom, #ffffff, #e6e6e6); 
-    display: none; 
-    flex-direction: column; 
-    min-height: 100vh;
-}
-.compropay-header { 
-    padding: 20px; 
-}
-.back-arrow-compropay { 
-    font-size: 26px; 
-    color: #111; 
-    cursor: pointer; 
-    font-weight: 300;
-}
+/* --- TELA 3: COMPROPAY --- */
+.compropay-screen { background: #fbfbfb; display: none; flex-direction: column; min-height: 100vh; }
+.compropay-header { padding: 20px; }
+.back-arrow-compropay { font-size: 26px; color: #111; cursor: pointer; font-weight: 300; }
 
-.compropay-content { 
-    padding: 0 25px; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-}
-.compropay-logo { 
-    width: 140px; 
-    margin-bottom: 15px; 
-}
-.compropay-content h2 { 
-    font-size: 22px; 
-    font-weight: 700; 
-    color: #111; 
-    margin-bottom: 5px; 
-}
-.compropay-content h3 { 
-    font-size: 16px; 
-    font-weight: 400; 
-    color: #555; 
-    margin-bottom: 30px; 
-}
+.compropay-content { padding: 0 25px; display: flex; flex-direction: column; align-items: center; }
+.compropay-logo { width: 140px; margin-bottom: 15px; }
+.compropay-content h2 { font-size: 22px; font-weight: 700; color: #111; margin-bottom: 5px; }
+.compropay-content h3 { font-size: 16px; font-weight: 400; color: #555; margin-bottom: 30px; }
 
-.compropay-details { 
-    width: 100%; 
-}
-.compropay-details hr { 
-    border: none; 
-    border-top: 1px solid #d1d1d1; 
-    margin: 15px 0; 
-}
-.detail-row { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: flex-start; 
-    margin-bottom: 15px; 
-}
-.detail-label { 
-    font-size: 12px; 
-    font-weight: 600; 
-    color: #999; 
-    text-transform: uppercase; 
-    width: 30%; 
-}
-.detail-value { 
-    font-size: 14px; 
-    font-weight: 500; 
-    color: #111; 
-    text-align: right; 
-    width: 70%; 
-    word-wrap: break-word; 
-}
+.compropay-details { width: 100%; }
+.compropay-details hr { border: none; border-top: 1px solid #ddd; margin: 15px 0; }
+.detail-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+.detail-label { font-size: 11px; font-weight: 600; color: #888; text-transform: uppercase; width: 30%; }
+.detail-value { font-size: 14px; font-weight: 500; color: #111; text-align: right; width: 70%; word-wrap: break-word; }
 
-.compropay-actions { 
-    position: fixed; 
-    bottom: 0; 
-    left: 0; 
-    width: 100%; 
-    padding: 20px; 
-}
+.compropay-actions { position: fixed; bottom: 0; left: 0; width: 100%; padding: 20px; background: #fbfbfb; }
