@@ -1,60 +1,47 @@
 document.getElementById('btn-pagar').addEventListener('click', () => {
-    // Captura os dados digitados
+    // 1. Captura os dados digitados na Tela 1
     const username = document.getElementById('input-username').value;
-    const store = document.getElementById('input-store').value;
     const value = document.getElementById('input-value').value;
+    
+    // Define um nome de origem fixo como na referência
+    const originName = "Pedro Henrique Sales Cavalcante";
 
-    // 1. Abre Overlay "Validando transação..."
-    const overlay = document.getElementById('overlay');
-    const modalValidating = document.getElementById('modal-validating');
-    const modalProcessing = document.getElementById('modal-processing');
-    const screenBlack = document.getElementById('screen-black');
-    const screenSuccess = document.getElementById('screen-success');
+    // 2. Elementos de Tela e Transição
+    const screenPayment = document.getElementById('screen-payment');
+    const overlayTransition = document.getElementById('overlay-transition');
     const screenReceipt = document.getElementById('screen-receipt');
     
-    overlay.style.display = 'flex';
+    // Oculta a tela de pagamento
+    screenPayment.classList.remove('active');
+    
+    // 3. Exibe o Overlay de Transição (com o GIF)
+    overlayTransition.style.display = 'flex';
 
-    // 2. Tela preta após 1.5s
+    // 4. Temporizador da Transição (Sincronizado com a duração do GIF)
+    // Usaremos 2500ms (2,5 segundos), que é uma duração comum para GIFs de transição
     setTimeout(() => {
-        overlay.style.display = 'none';
-        modalValidating.classList.add('hidden');
-        screenBlack.classList.add('active');
+        // Oculta a transição
+        overlayTransition.style.display = 'none';
         
-        // 3. Modal "Realizando pagamento..."
-        setTimeout(() => {
-            screenBlack.classList.remove('active');
-            overlay.style.display = 'flex';
-            modalProcessing.classList.remove('hidden');
+        // 5. Exibe a Nova Tela de Comprovante Final
+        screenReceipt.style.display = 'flex';
+        
+        // --- PREENCHIMENTO DE DADOS DINÂMICOS ---
+        
+        // Valor
+        document.getElementById('receipt-value').innerText = value;
+        // Destino (@user)
+        document.getElementById('receipt-username').innerText = username;
+        // Origem (Nome fixo)
+        document.getElementById('receipt-origem').innerText = originName;
+        
+        // Data e Hora atuais
+        const now = new Date();
+        document.getElementById('receipt-date').innerText = now.toLocaleString('pt-BR');
+        
+        // Código de Transação aleatório (6 dígitos)
+        const randomCode = Math.floor(100000 + Math.random() * 900000);
+        document.getElementById('receipt-code').innerText = randomCode;
 
-            // 4. Animação de sucesso (bolinha roxa)
-            setTimeout(() => {
-                overlay.style.display = 'none';
-                screenSuccess.style.display = 'flex';
-
-                // 5. Exibir o Comprovante Final
-                setTimeout(() => {
-                    screenSuccess.style.display = 'none';
-                    document.getElementById('screen-payment').classList.remove('active');
-                    screenReceipt.style.display = 'flex';
-                    
-                    // Preencher dados do comprovante
-                    document.getElementById('receipt-value').innerText = value;
-                    document.getElementById('receipt-store').innerText = store;
-                    document.getElementById('receipt-username').innerText = username;
-                    
-                    // Data atual
-                    const now = new Date();
-                    document.getElementById('receipt-date').innerText = now.toLocaleString('pt-BR');
-                    
-                    // Código aleatório de 6 dígitos
-                    const randomCode = Math.floor(100000 + Math.random() * 900000);
-                    document.getElementById('receipt-code').innerText = randomCode;
-
-                }, 2000); // Tempo exibindo o checkmark
-
-            }, 1500); // Tempo validando pagamento
-
-        }, 1000); // Tempo de tela preta
-
-    }, 1500); // Tempo validando transação
+    }, 2500); // <-- TEMPO DE EXIBIÇÃO DO GIF (2,5 segundos)
 });
