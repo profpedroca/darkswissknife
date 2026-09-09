@@ -52,7 +52,6 @@ body { background: #f8f9fa; color: #111; overscroll-behavior: none; }
 .shop-icon-large { width: 65px; height: 65px; margin-bottom: 10px; border-radius: 50%; }
 .receipt-status-title { font-size: 20px; font-weight: 600; color: #111; margin-bottom: 15px; }
 
-/* Cartões espremidos para não rolar a tela */
 .receipt-card { background: var(--card-bg); width: 100%; border-radius: 8px; display: flex; align-items: flex-start; padding: 12px 15px; margin-bottom: 2px; text-align: left; }
 .card-icon { width: 30px; height: 30px; margin-right: 12px; display: flex; align-items: center; justify-content: center; padding-top: 3px; }
 .card-details { flex: 1; display: flex; flex-direction: column; }
@@ -76,7 +75,6 @@ body { background: #f8f9fa; color: #111; overscroll-behavior: none; }
 .btn-action { width: 100%; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 15px; cursor: pointer; outline: none; }
 .btn-share { background: var(--primary-purple); color: white; border: none; }
 .btn-view-full { background: transparent; color: var(--primary-purple); border: 2px solid var(--primary-purple); }
-
 
 /* --- TELA 3: COMPROPAY --- */
 .compropay-screen { background: #fbfbfb; display: none; flex-direction: column; min-height: 100vh; }
