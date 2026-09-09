@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- TELA 1: DADOS DO PAGAMENTO -->
     <div id="screen-payment" class="screen active">
         <div class="header">
             <span class="back-arrow">←</span>
@@ -48,12 +49,15 @@
         </div>
     </div>
 
+    <!-- SOBREPOSIÇÃO: TRANSIÇÃO COM GIF -->
     <div id="overlay-transition" class="overlay">
         <img src="Transition.gif" alt="A processar..." class="transition-gif">
     </div>
 
+    <!-- TELA 2: COMPROVANTE RESUMIDO -->
     <div id="screen-receipt" class="screen receipt-screen">
         
+        <!-- Botão de Fechar flutuante -->
         <button class="btn-close-receipt" onclick="location.reload()">
             <svg viewBox="0 0 24 24" fill="#680ba3" width="20" height="20">
                 <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
@@ -62,7 +66,6 @@
 
         <div class="receipt-content">
             <img src="shop-icon.png" alt="Loja" class="shop-icon-large">
-            
             <h2 class="receipt-status-title">Pagamento realizado</h2>
 
             <div class="receipt-card value-card">
@@ -96,10 +99,8 @@
                 <div class="card-details">
                     <p class="info-label">DATA</p>
                     <p id="receipt-date" class="transaction-value">02/09/2026 08:05:57</p>
-                    
                     <p class="info-label transaction-space">TRANSAÇÃO</p>
                     <p id="receipt-code" class="transaction-value">962720</p>
-                    
                     <p class="info-label transaction-space">STATUS</p>
                     <p class="transaction-value status-confirmed">Confirmado</p>
                 </div>
@@ -107,8 +108,55 @@
 
             <div class="receipt-actions">
                 <button class="btn-action btn-share">Compartilhar</button>
-                <button class="btn-action btn-view-full">Ver comprovante</button>
+                <button class="btn-action btn-view-full" id="btn-ver-comprovante">Ver comprovante</button>
             </div>
+        </div>
+    </div>
+
+    <!-- TELA 3: COMPROPAY DETALHADO -->
+    <div id="screen-compropay" class="screen compropay-screen">
+        <div class="compropay-header">
+            <span class="back-arrow-compropay" id="btn-back-compropay">←</span>
+        </div>
+        
+        <div class="compropay-content">
+            <img src="compropay-logo.png" alt="ComproPay Logo" class="compropay-logo">
+            <h2>Comprovante</h2>
+            <h3>Pagamento</h3>
+            
+            <div class="compropay-details">
+                <hr>
+                <div class="detail-row">
+                    <span class="detail-label">VALOR</span>
+                    <span class="detail-value" id="cp-value">R$ 0,80</span>
+                </div>
+                <hr>
+                <div class="detail-row">
+                    <span class="detail-label">ORIGEM</span>
+                    <span class="detail-value" id="cp-origem">Pedro Henrique Sales Cavalcante</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">DESTINO</span>
+                    <span class="detail-value" id="cp-username">@UNIVERSDOACAI1</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">TRANSAÇÃO</span>
+                    <span class="detail-value" id="cp-code">962720</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">DATA</span>
+                    <span class="detail-value" id="cp-date">02/09/2026 08:05:57</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">STATUS</span>
+                    <span class="detail-value">Confirmado</span>
+                </div>
+                <hr>
+            </div>
+        </div>
+
+        <div class="compropay-actions">
+            <button class="btn-action btn-share">Compartilhar</button>
         </div>
     </div>
 
